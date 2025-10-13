@@ -1,13 +1,18 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Timer } from "./components/Timer";
 import { TimerControls } from "./components/TimerControls";
+import { TimerSettings } from "./components/TimerSettings";
 
 export default function App() {
   const FIVE_HOURS_IN_SECONDS = 5 * 60 * 60;
+  const [initialDuration, setInitialDuration] = useState(FIVE_HOURS_IN_SECONDS);
   const [timeRemaining, setTimeRemaining] = useState(FIVE_HOURS_IN_SECONDS);
   const [isActive, setIsActive] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const [showControls, setShowControls] = useState(true);
+  const [backgroundImage, setBackgroundImage] = useState(
+    "https://uploadthingy.s3.us-west-1.amazonaws.com/3swgVz7qTyyFqUQhK5yy43/Meeting_Banner.png"
+  );
   const inactivityTimer = useRef(null);
 
   useEffect(() => {
@@ -33,12 +38,12 @@ export default function App() {
   useEffect(() => {
     const resetInactivityTimer = () => {
       setShowControls(true);
-      
+
       // Clear existing timer
       if (inactivityTimer.current) {
         clearTimeout(inactivityTimer.current);
       }
-      
+
       // Set new timer to hide controls after 2 seconds
       inactivityTimer.current = setTimeout(() => {
         setShowControls(false);
@@ -54,16 +59,16 @@ export default function App() {
     };
 
     // Add event listeners
-    document.addEventListener('mousemove', handleMouseMove);
-    document.addEventListener('mouseenter', handleMouseEnter);
+    document.addEventListener("mousemove", handleMouseMove);
+    document.addEventListener("mouseenter", handleMouseEnter);
 
     // Initialize timer
     resetInactivityTimer();
 
     // Cleanup
     return () => {
-      document.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('mouseenter', handleMouseEnter);
+      document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseenter", handleMouseEnter);
       if (inactivityTimer.current) {
         clearTimeout(inactivityTimer.current);
       }
@@ -84,25 +89,53 @@ export default function App() {
   };
 
   const handleRestart = () => {
-    setTimeRemaining(FIVE_HOURS_IN_SECONDS);
+    setTimeRemaining(initialDuration);
     setIsActive(false);
     setIsPaused(false);
   };
 
+  const handleSetTime = (newDuration) => {
+    setInitialDuration(newDuration);
+    setTimeRemaining(newDuration);
+    setIsActive(false);
+    setIsPaused(false);
+  };
+
+  const handleBackgroundChange = (newBackground) => {
+    if (newBackground) {
+      setBackgroundImage(newBackground);
+    } else {
+      // Reset to default background
+      setBackgroundImage(
+        "https://uploadthingy.s3.us-west-1.amazonaws.com/3swgVz7qTyyFqUQhK5yy43/Meeting_Banner.png"
+      );
+    }
+  };
+
   return (
     <div
-      className="flex flex-col items-center justify-center w-full min-h-screen bg-center bg-cover"
+      className="flex flex-col items-center justify-center w-full min-h-screen bg-center bg-cover relative"
       style={{
-        backgroundImage: `url(https://uploadthingy.s3.us-west-1.amazonaws.com/3swgVz7qTyyFqUQhK5yy43/Meeting_Banner.png)`,
+        backgroundImage: `url(${backgroundImage})`,
         backgroundColor: "#1a1a1a",
       }}
     >
+      {/* Settings Sidebar - Fixed Position */}
+      <TimerSettings
+        onSetTime={handleSetTime}
+        currentTime={timeRemaining}
+        isActive={isActive}
+        onBackgroundChange={handleBackgroundChange}
+        currentBackground={backgroundImage}
+      />
+
+      {/* Main Content */}
       <div className="flex flex-col items-center w-full p-16 mt-40 max-w-7xl">
         <div className="w-full max-w-6xl scale-125">
           <Timer timeRemaining={timeRemaining} />
           <div
             className={`transition-opacity duration-300 ${
-              showControls ? 'opacity-100' : 'opacity-0'
+              showControls ? "opacity-100" : "opacity-0"
             }`}
           >
             <TimerControls

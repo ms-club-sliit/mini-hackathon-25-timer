@@ -10,9 +10,7 @@ export default function App() {
   const [isActive, setIsActive] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const [showControls, setShowControls] = useState(true);
-  const [backgroundImage, setBackgroundImage] = useState(
-    "https://uploadthingy.s3.us-west-1.amazonaws.com/3swgVz7qTyyFqUQhK5yy43/Meeting_Banner.png"
-  );
+  const [backgroundImage, setBackgroundImage] = useState("/background.png");
   const inactivityTimer = useRef(null);
 
   useEffect(() => {
@@ -106,9 +104,7 @@ export default function App() {
       setBackgroundImage(newBackground);
     } else {
       // Reset to default background
-      setBackgroundImage(
-        "https://uploadthingy.s3.us-west-1.amazonaws.com/3swgVz7qTyyFqUQhK5yy43/Meeting_Banner.png"
-      );
+      setBackgroundImage("/background.png");
     }
   };
 

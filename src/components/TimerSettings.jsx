@@ -78,20 +78,23 @@ export function TimerSettings({
       <button
         onClick={toggleSidebar}
         disabled={isActive}
-        className={`fixed top-6 right-6 z-50 flex items-center gap-2 px-4 py-3 rounded-full shadow-lg transition-all transform hover:scale-105
+        aria-label="Open timer settings"
+        className={`group fixed top-6 right-6 sm:top-8 sm:right-8 z-50 flex items-center gap-2.5 px-5 py-2.5 rounded-full font-bold text-sm sm:text-base tracking-tight transition-all duration-200 select-none
           ${
             isActive
-              ? "bg-gray-600 cursor-not-allowed opacity-50"
-              : "bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white"
+              ? "bg-slate-400/40 text-white/50 border border-white/20 cursor-not-allowed opacity-40 shadow-none backdrop-blur-sm"
+              : "bg-gradient-to-r from-[#2563EB] to-[#3B82F6] hover:from-[#1D4ED8] hover:to-[#2563EB] text-white border border-blue-300/30 shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 hover:scale-[1.04] active:scale-[0.97]"
           }`}
       >
-        <SettingsIcon size={20} />
-        <span className="hidden sm:inline">Settings</span>
+        <span className="p-1 rounded-full bg-white/20 text-white group-hover:bg-white/30 group-hover:rotate-45 transition-all duration-300 flex items-center justify-center">
+          <SettingsIcon size={17} className="stroke-[2.2]" />
+        </span>
+        <span className="text-white font-bold tracking-tight">Settings</span>
       </button>
 
       {/* Sidebar Overlay */}
       <div
-        className={`fixed inset-0 bg-black/50 backdrop-blur-sm z-40 transition-opacity duration-300 ${
+        className={`fixed inset-0 bg-black/15 backdrop-blur-[2px] z-40 transition-opacity duration-300 ${
           isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
         onClick={handleCancel}
@@ -101,40 +104,43 @@ export function TimerSettings({
         aria-label="Close settings sidebar"
       />
 
-      {/* Sidebar */}
+      {/* Sidebar - Transparent Translucent Glassmorphism */}
       <div
-        className={`fixed top-0 right-0 h-full w-96 bg-gradient-to-b from-gray-900 to-black shadow-2xl z-50 transform transition-transform duration-300 ease-in-out ${
+        className={`fixed top-0 right-0 h-full w-96 max-w-[90vw] bg-white/20 backdrop-blur-2xl border-l border-white/40 shadow-2xl shadow-black/15 z-50 transform transition-transform duration-300 ease-in-out flex flex-col ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
         {/* Sidebar Header */}
-        <div className="flex items-center justify-between p-6 border-b border-white/20">
-          <h2 className="text-xl font-bold text-white">Timer Settings</h2>
+        <div className="flex items-center justify-between p-6 border-b border-white/30 bg-white/10">
+          <h2 className="text-xl font-bold text-gray-900 tracking-tight">Timer Settings</h2>
           <button
             onClick={handleCancel}
-            className="p-2 rounded-full hover:bg-white/10 transition-colors"
+            aria-label="Close settings"
+            className="p-2 rounded-full hover:bg-white/20 text-gray-700 hover:text-gray-900 transition-colors"
           >
-            <XIcon size={20} className="text-white" />
+            <XIcon size={20} />
           </button>
         </div>
 
         {/* Sidebar Content */}
-        <div className="p-6 space-y-8 overflow-y-auto h-full pb-24">
+        <div className="p-6 space-y-6 overflow-y-auto flex-1 pb-28">
           {/* Timer Duration Section */}
-          <div className="space-y-4">
-            <div className="flex items-center gap-3 mb-4">
-              <ClockIcon size={20} className="text-blue-400" />
-              <h3 className="text-lg font-semibold text-white">
+          <div className="space-y-3">
+            <div className="flex items-center gap-2.5">
+              <span className="p-1.5 rounded-lg bg-blue-500/20 text-blue-800">
+                <ClockIcon size={18} />
+              </span>
+              <h3 className="text-base font-bold text-gray-900 tracking-tight">
                 Timer Duration
               </h3>
             </div>
 
-            <div className="bg-white/5 rounded-xl p-6 border border-white/10">
-              <div className="grid grid-cols-3 gap-4">
-                <div className="space-y-2">
+            <div className="bg-white/25 backdrop-blur-md rounded-2xl p-5 border border-white/40 shadow-sm space-y-4">
+              <div className="grid grid-cols-3 gap-3">
+                <div className="space-y-1.5">
                   <label
                     htmlFor="hours-input"
-                    className="block text-sm font-medium text-white/80"
+                    className="block text-xs font-bold text-gray-700 text-center uppercase tracking-wider"
                   >
                     Hours
                   </label>
@@ -147,14 +153,14 @@ export function TimerSettings({
                     onChange={(e) =>
                       handleInputChange(setHours, e.target.value, 23)
                     }
-                    className="w-full px-3 py-2 bg-white/10 border border-white/20 rounded-lg text-white text-center focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-2 py-2 bg-white/40 border border-white/60 rounded-xl text-gray-900 font-bold text-center text-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white/70 shadow-inner"
                   />
                 </div>
 
-                <div className="space-y-2">
+                <div className="space-y-1.5">
                   <label
                     htmlFor="minutes-input"
-                    className="block text-sm font-medium text-white/80"
+                    className="block text-xs font-bold text-gray-700 text-center uppercase tracking-wider"
                   >
                     Minutes
                   </label>
@@ -167,14 +173,14 @@ export function TimerSettings({
                     onChange={(e) =>
                       handleInputChange(setMinutes, e.target.value, 59)
                     }
-                    className="w-full px-3 py-2 bg-white/10 border border-white/20 rounded-lg text-white text-center focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-2 py-2 bg-white/40 border border-white/60 rounded-xl text-gray-900 font-bold text-center text-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white/70 shadow-inner"
                   />
                 </div>
 
-                <div className="space-y-2">
+                <div className="space-y-1.5">
                   <label
                     htmlFor="seconds-input"
-                    className="block text-sm font-medium text-white/80"
+                    className="block text-xs font-bold text-gray-700 text-center uppercase tracking-wider"
                   >
                     Seconds
                   </label>
@@ -187,13 +193,13 @@ export function TimerSettings({
                     onChange={(e) =>
                       handleInputChange(setSeconds, e.target.value, 59)
                     }
-                    className="w-full px-3 py-2 bg-white/10 border border-white/20 rounded-lg text-white text-center focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-2 py-2 bg-white/40 border border-white/60 rounded-xl text-gray-900 font-bold text-center text-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white/70 shadow-inner"
                   />
                 </div>
               </div>
 
-              <div className="mt-4 p-3 bg-blue-500/20 rounded-lg">
-                <p className="text-sm text-blue-200 text-center">
+              <div className="p-2.5 bg-blue-500/15 border border-blue-400/30 rounded-xl">
+                <p className="text-xs font-bold text-blue-950 text-center tracking-wide">
                   Total: {String(hours).padStart(2, "0")}:
                   {String(minutes).padStart(2, "0")}:
                   {String(seconds).padStart(2, "0")}
@@ -203,20 +209,24 @@ export function TimerSettings({
           </div>
 
           {/* Background Image Section */}
-          <div className="space-y-4">
-            <div className="flex items-center gap-3 mb-4">
-              <ImageIcon size={20} className="text-purple-400" />
-              <h3 className="text-lg font-semibold text-white">
+          <div className="space-y-3">
+            <div className="flex items-center gap-2.5">
+              <span className="p-1.5 rounded-lg bg-purple-500/20 text-purple-800">
+                <ImageIcon size={18} />
+              </span>
+              <h3 className="text-base font-bold text-gray-900 tracking-tight">
                 Background Image
               </h3>
             </div>
 
-            <div className="bg-white/5 rounded-xl p-6 border border-white/10 space-y-4">
+            <div className="bg-white/25 backdrop-blur-md rounded-2xl p-5 border border-white/40 shadow-sm space-y-4">
               {/* Current Background Preview */}
               {(previewImage || currentBackground) && (
-                <div className="space-y-3">
-                  <p className="text-sm text-white/70">Current Background:</p>
-                  <div className="relative w-full h-32 rounded-lg overflow-hidden border border-white/20">
+                <div className="space-y-2">
+                  <p className="text-xs font-bold text-gray-700 uppercase tracking-wider">
+                    Current Preview:
+                  </p>
+                  <div className="relative w-full h-28 rounded-xl overflow-hidden border border-white/50 shadow-inner">
                     <img
                       src={previewImage || currentBackground}
                       alt="Background preview"
@@ -224,9 +234,10 @@ export function TimerSettings({
                     />
                     <button
                       onClick={handleRemoveBackground}
-                      className="absolute top-2 right-2 p-1.5 bg-red-500 hover:bg-red-600 rounded-full transition-colors"
+                      aria-label="Remove background"
+                      className="absolute top-2 right-2 p-1.5 bg-rose-500 hover:bg-rose-600 text-white rounded-full shadow-md transition-colors"
                     >
-                      <XIcon size={14} className="text-white" />
+                      <XIcon size={13} />
                     </button>
                   </div>
                 </div>
@@ -243,13 +254,13 @@ export function TimerSettings({
                 />
                 <label
                   htmlFor="background-upload"
-                  className="flex items-center justify-center gap-3 w-full p-4 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white rounded-lg transition-all cursor-pointer border-2 border-dashed border-purple-300/50 hover:border-purple-300"
+                  className="flex items-center justify-center gap-2.5 w-full py-3 px-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold rounded-xl shadow-md transition-all cursor-pointer hover:scale-[1.02] active:scale-[0.98]"
                 >
-                  <UploadIcon size={20} />
+                  <UploadIcon size={18} />
                   <span>Upload New Background</span>
                 </label>
-                <p className="text-xs text-white/50 mt-2 text-center">
-                  Supports JPG, PNG, GIF files
+                <p className="text-[11px] text-gray-600 mt-2 text-center font-medium">
+                  Supports JPG, PNG, GIF, WebP files
                 </p>
               </div>
             </div>
@@ -257,18 +268,19 @@ export function TimerSettings({
         </div>
 
         {/* Sidebar Footer */}
-        <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black to-transparent">
+        <div className="absolute bottom-0 left-0 right-0 p-5 bg-white/20 backdrop-blur-xl border-t border-white/30">
           <div className="flex gap-3">
             <button
               onClick={handleApply}
-              className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white rounded-lg transition-all font-medium"
+              className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-[#10B981] to-[#059669] hover:from-[#059669] hover:to-[#047857] text-white rounded-xl transition-all font-bold border border-emerald-300/30 shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 hover:scale-[1.02] active:scale-[0.98]"
             >
               <CheckIcon size={18} />
               Apply Changes
             </button>
             <button
               onClick={handleCancel}
-              className="flex items-center justify-center gap-2 px-4 py-3 bg-white/10 hover:bg-white/20 text-white rounded-lg transition-all"
+              aria-label="Cancel"
+              className="flex items-center justify-center px-4 py-3 bg-white/30 hover:bg-white/60 text-gray-800 border border-white/50 rounded-xl transition-all font-bold shadow-sm hover:scale-[1.02] active:scale-[0.98]"
             >
               <XIcon size={18} />
             </button>

@@ -115,19 +115,15 @@ export default function App() {
         backgroundImage: `url(${backgroundImage || "/background.png"})`,
       }}
     >
-      {/* Top-Left Header: mini Hackathon 26 */}
-      <div className="absolute top-6 left-6 sm:top-10 sm:left-10 md:top-12 md:left-12 flex flex-col items-start select-none z-20">
-        <span className="text-4xl sm:text-5xl md:text-6xl lg:text-[66px] font-black text-black tracking-[-0.03em] leading-none mb-1 sm:mb-1.5">
-          mini
-        </span>
-        <div className="flex items-end gap-1.5 sm:gap-2 leading-none">
-          <span className="text-2xl sm:text-3xl md:text-[38px] lg:text-[44px] font-extrabold text-black tracking-[-0.04em] leading-none">
-            Hackathon
-          </span>
-          <span className="bg-[#2B54FF] text-white text-xl sm:text-2xl md:text-[34px] lg:text-[38px] font-light leading-none px-1.5 sm:px-2 pt-1 pb-0.5 sm:pt-1.5 sm:pb-1 flex items-center justify-center">
-            26
-          </span>
-        </div>
+
+      {/* Top-Left Header: MiniHackathon 26 Logo */}
+      <div className="absolute top-4 left-4 sm:top-6 sm:left-6 md:top-8 md:left-8 lg:top-10 lg:left-10 2xl:top-12 2xl:left-12 select-none z-20 pointer-events-none">
+        <img
+          src="/minihackathon-logo.png"
+          alt="mini Hackathon 26"
+          className="w-28 sm:w-36 md:w-44 lg:w-48 xl:w-56 2xl:w-64 h-auto object-contain drop-shadow-sm"
+          draggable="false"
+        />
       </div>
 
       {/* Settings Sidebar - Fixed Position */}
@@ -140,14 +136,14 @@ export default function App() {
       />
 
       {/* Main Content */}
-      <div className="flex flex-col items-center justify-center w-full px-6 py-12 max-w-7xl z-10">
+      <div className="flex flex-col items-center justify-center w-full px-4 sm:px-6 md:px-8 z-10 py-4 sm:py-6">
         {/* Crystal Clear Glassmorphism Card Behind Timer */}
-        <div className="relative px-8 sm:px-14 md:px-20 py-10 sm:py-14 rounded-[36px] sm:rounded-[48px] bg-white/[0.08] backdrop-blur-md border border-white/60 shadow-[inset_0_1px_1px_rgba(255,255,255,0.75),0_30px_70px_-15px_rgba(0,0,0,0.18),0_15px_30px_-8px_rgba(0,0,0,0.12),0_6px_12px_rgba(0,0,0,0.06)] flex flex-col items-center justify-center">
+        <div className="relative max-w-fit px-6 sm:px-10 md:px-12 lg:px-14 xl:px-16 2xl:px-20 py-6 sm:py-8 md:py-9 lg:py-10 xl:py-12 2xl:py-14 rounded-[28px] sm:rounded-[36px] md:rounded-[44px] lg:rounded-[52px] xl:rounded-[60px] bg-white/[0.08] backdrop-blur-md border border-white/60 shadow-[inset_0_1px_1px_rgba(255,255,255,0.75),0_30px_70px_-15px_rgba(0,0,0,0.18),0_15px_30px_-8px_rgba(0,0,0,0.12),0_6px_12px_rgba(0,0,0,0.06)] flex flex-col items-center justify-center">
           <Timer timeRemaining={timeRemaining} />
         </div>
 
         <div
-          className={`mt-10 sm:mt-14 transition-opacity duration-300 ${
+          className={`mt-6 sm:mt-8 md:mt-10 lg:mt-12 transition-opacity duration-300 ${
             showControls ? "opacity-100" : "opacity-0 pointer-events-none"
           }`}
         >

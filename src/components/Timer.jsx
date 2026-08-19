@@ -12,7 +12,7 @@ export function Timer({ timeRemaining }) {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center gap-8 md:flex-row md:gap-12 lg:gap-20">
+    <div className="flex flex-col items-center justify-center gap-6 sm:gap-8 md:gap-10 lg:gap-12 xl:gap-14 2xl:gap-16 md:flex-row">
       <TimeUnit value={formatTime(hours)} label="Hours" type="hours" />
       <TimeUnit value={formatTime(minutes)} label="Minutes" type="minutes" />
       <TimeUnit value={formatTime(seconds)} label="Seconds" type="seconds" />
@@ -32,7 +32,7 @@ function TimeUnit({ value, label, type }) {
 
   return (
     <div className="flex flex-col items-center select-none">
-      <div className="relative w-40 h-40 sm:w-52 sm:h-52 md:w-60 md:h-60 lg:w-64 lg:h-64 flex items-center justify-center">
+      <div className="relative w-36 h-36 sm:w-44 sm:h-44 md:w-52 md:h-52 lg:w-56 lg:h-56 xl:w-60 xl:h-60 2xl:w-68 2xl:h-68 3xl:w-72 3xl:h-72 flex items-center justify-center">
         <svg className="w-full h-full -rotate-90" viewBox="0 0 120 120">
           <defs>
             {/* Hours Gradient: Vibrant Royal Blue */}
@@ -83,14 +83,14 @@ function TimeUnit({ value, label, type }) {
 
         {/* Time value number */}
         <div className="absolute inset-0 flex items-center justify-center">
-          <span className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-black tracking-tight">
+          <span className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-6xl 2xl:text-7xl 3xl:text-8xl font-extrabold text-black tracking-tight leading-none">
             {value}
           </span>
         </div>
       </div>
 
       {/* Unit Label */}
-      <span className="mt-4 text-lg sm:text-xl md:text-2xl font-bold tracking-tight text-black">
+      <span className="mt-3 sm:mt-4 md:mt-4 lg:mt-5 xl:mt-5 2xl:mt-6 text-base sm:text-lg md:text-xl lg:text-xl xl:text-2xl 2xl:text-2xl 3xl:text-3xl font-bold tracking-tight text-black">
         {label}
       </span>
     </div>

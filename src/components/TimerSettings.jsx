@@ -79,24 +79,22 @@ export function TimerSettings({
         onClick={toggleSidebar}
         disabled={isActive}
         aria-label="Open timer settings"
-        className={`group fixed top-6 right-6 sm:top-8 sm:right-8 z-50 flex items-center gap-2.5 px-5 py-2.5 rounded-full font-bold text-sm sm:text-base tracking-tight transition-all duration-200 select-none
-          ${
-            isActive
-              ? "bg-slate-400/40 text-white/50 border border-white/20 cursor-not-allowed opacity-40 shadow-none backdrop-blur-sm"
-              : "bg-gradient-to-r from-[#2563EB] to-[#3B82F6] hover:from-[#1D4ED8] hover:to-[#2563EB] text-white border border-blue-300/30 shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 hover:scale-[1.04] active:scale-[0.97]"
+        className={`group fixed top-6 right-6 sm:top-8 sm:right-8 xl:top-10 xl:right-10 2xl:top-12 2xl:right-12 3xl:top-16 3xl:right-16 z-50 flex items-center gap-2.5 xl:gap-3 px-5 xl:px-7 2xl:px-8 3xl:px-10 py-2.5 xl:py-3.5 2xl:py-4 3xl:py-5 rounded-full font-bold text-sm sm:text-base xl:text-lg 2xl:text-xl 3xl:text-2xl tracking-tight transition-all duration-200 select-none
+          ${isActive
+            ? "bg-slate-400/40 text-white/50 border border-white/20 cursor-not-allowed opacity-40 shadow-none backdrop-blur-sm"
+            : "bg-gradient-to-r from-[#2563EB] to-[#3B82F6] hover:from-[#1D4ED8] hover:to-[#2563EB] text-white border border-blue-300/30 shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 hover:scale-[1.04] active:scale-[0.97]"
           }`}
       >
-        <span className="p-1 rounded-full bg-white/20 text-white group-hover:bg-white/30 group-hover:rotate-45 transition-all duration-300 flex items-center justify-center">
-          <SettingsIcon size={17} className="stroke-[2.2]" />
+        <span className="p-1 xl:p-1.5 2xl:p-2 rounded-full bg-white/20 text-white group-hover:bg-white/30 group-hover:rotate-45 transition-all duration-300 flex items-center justify-center">
+          <SettingsIcon size={17} className="stroke-[2.2] xl:w-5 xl:h-5 2xl:w-6 2xl:h-6 3xl:w-7 3xl:h-7" />
         </span>
         <span className="text-white font-bold tracking-tight">Settings</span>
       </button>
 
       {/* Sidebar Overlay */}
       <div
-        className={`fixed inset-0 bg-black/15 backdrop-blur-[2px] z-40 transition-opacity duration-300 ${
-          isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
-        }`}
+        className={`fixed inset-0 bg-black/15 backdrop-blur-[2px] z-40 transition-opacity duration-300 ${isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+          }`}
         onClick={handleCancel}
         onKeyDown={(e) => e.key === "Escape" && handleCancel()}
         role="button"
@@ -106,9 +104,8 @@ export function TimerSettings({
 
       {/* Sidebar - Transparent Translucent Glassmorphism */}
       <div
-        className={`fixed top-0 right-0 h-full w-96 max-w-[90vw] bg-white/20 backdrop-blur-2xl border-l border-white/40 shadow-2xl shadow-black/15 z-50 transform transition-transform duration-300 ease-in-out flex flex-col ${
-          isOpen ? "translate-x-0" : "translate-x-full"
-        }`}
+        className={`fixed top-0 right-0 h-full w-96 max-w-[90vw] bg-white/20 backdrop-blur-2xl border-l border-white/40 shadow-2xl shadow-black/15 z-50 transform transition-transform duration-300 ease-in-out flex flex-col ${isOpen ? "translate-x-0" : "translate-x-full"
+          }`}
       >
         {/* Sidebar Header */}
         <div className="flex items-center justify-between p-6 border-b border-white/30 bg-white/10">
@@ -292,9 +289,9 @@ export function TimerSettings({
 }
 
 TimerSettings.propTypes = {
-  onSetTime: function () {},
-  currentTime: function () {},
-  isActive: function () {},
-  onBackgroundChange: function () {},
-  currentBackground: function () {},
+  onSetTime: function () { },
+  currentTime: function () { },
+  isActive: function () { },
+  onBackgroundChange: function () { },
+  currentBackground: function () { },
 };

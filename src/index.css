@@ -1,3 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  overflow-x: hidden;
+}
+
+.hackathon-mesh-bg {
+  background:
+    radial-gradient(circle at 98% 2%, rgba(134, 239, 172, 0.95) 0%, rgba(187, 247, 208, 0.5) 28%, transparent 58%),
+    radial-gradient(circle at 2% 2%, rgba(125, 211, 252, 0.95) 0%, rgba(186, 230, 253, 0.5) 30%, transparent 60%),
+    radial-gradient(circle at 2% 98%, rgba(216, 180, 254, 0.95) 0%, rgba(233, 213, 255, 0.5) 35%, transparent 65%),
+    radial-gradient(circle at 98% 98%, rgba(147, 197, 253, 0.95) 0%, rgba(199, 210, 254, 0.5) 30%, transparent 60%),
+    linear-gradient(135deg, #e0f2fe 0%, #ede9fe 50%, #dbeafe 100%);
+}
